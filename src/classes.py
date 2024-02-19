@@ -11,12 +11,17 @@ class Category():
         self.description = description
         self.__goods = []
 
-    def add_product(self, product):
-        self.__goods.append(product)
-        print(f"Продукт '{product.name}' добавлен в категорию '{self.name}'.")
+    @classmethod
+    def add_product(cls, product):
+        cls.__goods.append(product)
+        print(f"Продукт '{product.name}' добавлен в категорию '{cls.name}'.")
 
+    @property
     def get_goods(self):
-        return self.__goods
+        result = ""
+        for product in self.__goods:
+            result += f"{product.name}, {product.price} руб. Остаток: {product.amt_in_stock} шт.\n"
+        return result
 
 
 class Product():

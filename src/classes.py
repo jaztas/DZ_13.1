@@ -35,3 +35,10 @@ class Product():
         self.description = description
         self.price = price
         self.amt_in_stock = amt_in_stock
+
+    @staticmethod
+    def create_product(name, description, price, amt_in_stock):
+        new_product = Product(name, description, price, amt_in_stock)
+        return new_product
+
+

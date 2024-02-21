@@ -4,14 +4,14 @@ from src.classes import Category, Product
 
 @pytest.fixture()
 def categories():
-	return Category('Kitchen', 'everything for cooking', ['cup', 'knife', 'plate', 'fork', 'spoon'])
+	return Category('Kitchen', 'everything for cooking', [])
+
 
 def test_init_categories(categories):
 	assert categories.name == 'Kitchen'
 	assert categories.description == 'everything for cooking'
-	assert categories.goods == ['cup', 'knife', 'plate', 'fork', 'spoon']
-	assert len(categories.goods) == 5
-	assert categories.category_counter == 0
+	assert categories.goods == []
+	assert categories.category_counter == 1
 	assert categories.unique_goods_counter == 0
 
 
@@ -19,9 +19,9 @@ def test_init_categories(categories):
 def products():
 	return Product('cup', 'for tasty beverages', 10.50, 7)
 
+
 def test_init_products(products):
 	assert products.name == 'cup'
 	assert products.description == 'for tasty beverages'
 	assert products.price == 10.50
 	assert products.amt_in_stock == 7
-

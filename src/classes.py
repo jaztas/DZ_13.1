@@ -14,6 +14,15 @@ class Category:
 		Category.category_counter += 1
 		Category.unique_goods_counter += len(set(goods))
 
+	def __len__(self):
+		result = 0
+		for i in self.__goods:
+			result += i.amt_in_stock
+		return result
+
+	def __str__(self):
+		return f'{self.name}, количество продуктов: {len(self)} шт.'
+
 	@property
 	def get_goods(self):
 		result = ''
@@ -42,6 +51,13 @@ class Product:
 		self._price = price
 		self.amt_in_stock = amt_in_stock
 
+	def __str__(self):
+		return f'{self.name}, {self._price} руб. Остаток: {self.amt_in_stock} шт.'
+
+	def __add__(self, other):
+		result = (self._price * self.amt_in_stock) + (other._price * other.amt_in_stock)
+		return result
+
 	@classmethod
 	def make_product(cls, name, description, price, amt_in_stock, goods):
 		for i in goods:
@@ -62,10 +78,17 @@ class Product:
 		else:
 			self._price = value
 
-
+# a = Product('iPhone', 'Стильный телефон', 150, 5)
+# b = Product('Xiaomi', 'Умный телефон', 75, 10)
+# print(a + b)
+# print(a)
+# print(b)
+#
 # phones = Category('Телефоны', 'Хорошие', [])
 # iphone = Product('iPhone', 'Стильный телефон', 150, 5)
 # android = Product('Xiaomi', 'Умный телефон', 75, 10)
+# print(len(iphone.name))
+# print(len(android.description))
 #
 # print(phones.name)
 # print(phones.description)
